@@ -4,10 +4,8 @@
 version: 1.0.{build}.0
 install: 
   - git clone https://github.com/Indhukrishna/AppveyorTest
-  - ps: Push-Location
   - ps: $pwd
-  - cd AppveyorTest\Tests
-  - ps: Pop-Location
+  - cd Tests
 
 #---------------------------------# 
 #      build configuration        # 
@@ -21,6 +19,7 @@ build: false
 
 test_script:
     - ps: |
+        $pwd
         $res = & .\CreateObjectTest.ps1
         (New-Object 'System.Net.WebClient').UploadFile("https://ci.appveyor.com/api/testresults/nunit/$($env:APPVEYOR_JOB_ID)", (Resolve-Path .\CreateObjectTest.ps1))
         Push-AppveyorArtifact (Resolve-Path .\CreateObjectTest.ps1)
