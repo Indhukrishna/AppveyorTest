@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace CreateObject
 {
-    public class Class1
+    public static class CreateObject
     {
-
+        public static string DisplayObject()
+        {
+            return "Hello";
+        }
     }
 }
